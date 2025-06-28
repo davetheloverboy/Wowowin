@@ -185,6 +185,9 @@ def print_summary(summary):
   for key, value in summary.items( ):
     print(f"{key} : {value}")
 
+def solve_productivity_hours(summary):
+  productivity_hours = summary['Exercise_hours'] + summary['Study_hours'] + summary['Creativity_hours']
+  return productivity_hours
 
 #main function
 ask_name( )
@@ -192,10 +195,12 @@ ask_condition( )
 ask_sleep( )
 ask_eating() == summary["eating_frequency"], summary["OMAD"]  #unpacking the tuple
 ask_productivity() == summary["Study_hours"], summary["Exercise_hours"], summary["Creativity_hours"]  #unpacking the tuple
-ask_status( )
+productivity_hours = solve_productivity_hours(summary)
+ask_status() 
 
 #printing the whole summary
 print_summary(summary)
+print(f"You had {productivity_hours} productivity hours")
 
 
 
