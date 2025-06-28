@@ -186,8 +186,16 @@ def print_summary(summary):
     print(f"{key} : {value}")
 
 def solve_productivity_hours(summary):
+  productivity_status = 0
   productivity_hours = summary['Exercise_hours'] + summary['Study_hours'] + summary['Creativity_hours']
-  return productivity_hours
+  if productivity_hours <= 5
+    productivity_status == 1
+  elif productivity_hours <= 8 and productivity_hours > 5
+    productivity_status == 2
+  else:
+    productivity_status == 3
+  return productivity_hours, productivity_status
+
 
 #main function
 ask_name( )
