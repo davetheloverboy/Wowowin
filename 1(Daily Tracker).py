@@ -188,27 +188,37 @@ def print_summary(summary):
 def solve_productivity_hours(summary):
   productivity_status = 0
   productivity_hours = summary['Exercise_hours'] + summary['Study_hours'] + summary['Creativity_hours']
-  if productivity_hours <= 5
-    productivity_status == 1
-  elif productivity_hours <= 8 and productivity_hours > 5
-    productivity_status == 2
-  else:
-    productivity_status == 3
+  if productivity_hours <= 5:
+    productivity_status = 1
+  elif productivity_hours <= 8 and productivity_hours > 5:
+    productivity_status = 2
+  else:#this is for more than 8. 
+    productivity_status = 3
   return productivity_hours, productivity_status
 
+def productivity_feedback(productivity_status):
+  if productivity_status == 1:
+    print("Man you need to do more! Do better tomorrow!")
+  elif productivity_status == 2: 
+    print("Kinda good, but it can be better! Grind more tomorrow.")
+  else: 
+    print("Nice one my liege! Keep the fire burning.") 
 
 #main function
-ask_name( )
-ask_condition( )
-ask_sleep( )
-ask_eating() == summary["eating_frequency"], summary["OMAD"]  #unpacking the tuple
-ask_productivity() == summary["Study_hours"], summary["Exercise_hours"], summary["Creativity_hours"]  #unpacking the tuple
-productivity_hours = solve_productivity_hours(summary)
-ask_status() 
+ask_name()
+ask_condition()
+ask_sleep()
+ask_eating()
+ask_productivity() 
+hoursOfProductivity,statusOfProductivity = solve_productivity_hours(summary)
+ask_status()
 
 #printing the whole summary
 print_summary(summary)
-print(f"You had {productivity_hours} productivity hours")
+print(f"You had {hoursOfProductivity} productivity hours")
+productivity_feedback(statusOfProductivity)
+
+
 
 
 
