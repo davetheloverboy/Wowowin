@@ -88,6 +88,7 @@ for key, value in summary.items( ):
 # we'll have 7 functions, name, condition, sleep hours,eating frequency, productivity, kaoahan, and the printing for loop
 
 summary = { }
+numbers = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 #for the name
 def ask_name( ): 
@@ -113,7 +114,7 @@ def ask_sleep( ):
   while True:
     try:
       sleep_duration = int(input("How many hours did you sleep?: ")) 
-      if sleep_duration > 7 and sleep_duration  <= 9:
+      if sleep_duration >= 7 and sleep_duration  <= 9:
         print("That's good!")
       elif sleep_duration > 9:
         print("That's too much!")
@@ -128,22 +129,26 @@ def ask_sleep( ):
   
   
 #for the times of eating
-def ask_eating( ):
+def ask_eating( numbers):
   while True:
+    eat_frequency = 0
     try: 
       eat_frequency = int(input("How many times did you eat today?: "))
-      summary["eating_frequency"] = eat_frequency
+      if eat_frequency in numbers:
+        print("Okay!")
       break
     except ValueError:
       print("Invalid input. Input a number.")
+    summary["eating_frequency"] = eat_frequency
   
-  omad = input("Is today an OMAD day?: ")
-  while omad.lower().strip() == "yes" or omad.lower().strip() == "no":
-    summary["OMAD"] = omad 
-    print("Okay noted!")
-    break
-  else:
-    print("Invalid Input. Input yes or no only.")
+  while True:
+    omad = input("Is today an OMAD day?: ")
+    if omad.lower().strip() == "yes" or omad.lower().strip() == "no":
+      print("Okay noted!")
+      break
+    else: 
+      print("Invalid Input. Input yes or no only.")
+  summary["OMAD"] = omad
   
 
 #productivity
@@ -192,7 +197,7 @@ def solve_productivity_hours(summary):
     productivity_status = 1
   elif productivity_hours <= 8 and productivity_hours > 5:
     productivity_status = 2
-  else:#this is for more than 8. 
+  else:#this is for more than 8 hours(optimal). 
     productivity_status = 3
   return productivity_hours, productivity_status
 
