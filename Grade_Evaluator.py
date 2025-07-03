@@ -57,6 +57,7 @@ else:
 
 #intializing the dictionary
 Subject_and_Grades = { }
+sequence = ["First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eight", "Ninth", "Tenth","Eleventh"]
 
 #welcome prints
 print("Hi and Welcome!")
@@ -65,21 +66,38 @@ print("and returns the average with the result of it passing or failing")
 
 #getting the number of subject
 def get_Subject_count ( ):
-    subjectCount = input("So how many subjects do you wish for me to evaluate?: ")
-    return subjectCount
+    while True:
+        try:
+            subjectCount = int(input("So how many subjects do you wish for me to evaluate?: "))
+            return subjectCount
+        except ValueError:
+            print("Invalid input. Enter a proper input.")
 
 #getting the keys first, by for looping with the number of subs then assigning 0 to each
-def getDictKeys (NumOfSubs, Subject_and_Grades):
-    for i in range(NumOfSubs):
-        subjectName = input("Input the Subject name: ")
+def getDictKeys (NumOfSubs, Subject_and_Grades,sequence):
+    for i in range(NumOfSubs):        
+        subjectName = input(f"Input the {sequence[i]} Subject name: ")
         Subject_and_Grades[subjectName] = 0
-    
+
 #getting the values of each key with user input
 def getDictValues (Subject_and_Grades): 
     for key in Subject_and_Grades: 
-        subjectGrade = input(f"Input the grade for the subject {key}: ")
-        Subject_and_Grades[key] = subjectGrade
- 
+        while True:
+            try:
+                subjectGrade = int(input(f"Input the grade for the subject {key}: "))
+                while subjectGrade > 100:
+                    print("Input your True grade.")
+                    break
+                else:    
+                    Subject_and_Grades[key] = subjectGrade
+                    break
+            except ValueError:
+                print("Invalid Input")
+
+def display_grades(Subject_and_Grades):
+    for key,value in Subject_and_Grades.items():
+        print(f"Your grade in {key} is {value}.")
+
 #getting TOTAL by adding all the values of the dictionary and totalling them
 def get_total(Subject_and_Grades):
     total = 0
@@ -87,31 +105,46 @@ def get_total(Subject_and_Grades):
        grade = int(value)
        total += grade
     print(f"Your total is {total}.")
-    print(type(total),total)
     return total
 
 #getting the average 
 def get_average(totalGrade,NumOfSubs):
-    print(type(totalGrade),totalGrade)
     average = totalGrade / NumOfSubs
     print(f"Your grade average is {average}")
     return average
 
-def determine_status(average_grade):
+def determine_sub_status(Subject_and_Grades):
+    for key,value in Subject_and_Grades.items():
+        number = int(value)
+        if number >= 75:
+            print(f"You passed in {key}!")
+        else:
+            print(f"You failed in {key}.")
+
+def determine_status_overall(average_grade):
     if average_grade >= 75:
         print("You passed!") 
         print("You did it! Congratulations")
     else: 
-        print("Aw, you didn't pass, do better next time")
+        print("Aw, you didn't pass the general average which is 75, do better next time.")
+
+def print_space():
+    ah = "******\n"
+    print(" \n")
+    print(ah*20)
+    print(" \n")
 
 
 #main function
-NumOfSubs = int(get_Subject_count( ))
-getDictKeys(NumOfSubs, Subject_and_Grades)
+NumOfSubs = get_Subject_count( )
+getDictKeys(NumOfSubs, Subject_and_Grades, sequence)
 getDictValues(Subject_and_Grades)
+print_space()
+display_grades(Subject_and_Grades)
 totalGrade = get_total(Subject_and_Grades)
 average_grade = get_average( totalGrade,NumOfSubs)
-determine_status( )
+determine_sub_status(Subject_and_Grades)
+determine_status_overall( average_grade)
  
 
 
