@@ -10,11 +10,11 @@ Inputted_task = ""
 while Inputted_task != "1":
     print("Press Enter to add the task, Press 1 to see your tasks.")
     Inputted_task = input("Input a task to do. ")
-    
     TaskList[Inputted_task] = " not done"
 
+del TaskList["1"]
+print("These are your tasks: ")
 for key,value in TaskList.items():
-    print("These are your tasks: ")
     print(f"{key}:{value}")
 
 
