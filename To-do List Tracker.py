@@ -59,21 +59,31 @@ def view_tasks(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
         print(f"{num_sequence[i-1]}. {key} : '{value}'")
     decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
 
+
 #marks the chosen task done
 def taskMarker(ToDoList,print_dict,add_tasks,taskMarker,taskDeleter,end_program):
     print_dict(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
-    chosen_Task = input("What task to mark done?")
-    ToDoList[chosen_Task] = "Done"
-    print(f"{chosen_Task} marked Done.")
-    decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
-                        
+    while True:
+      try:    
+        chosen_Task = input("What task to mark done?")
+        ToDoList[chosen_Task] = "Done"
+        print(f"{chosen_Task} marked Done.")
+        decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
+      except ValueError:
+        print("Invalid Input. Please enter a valid one.")
+
 #deletes the chosen task
 def taskDeleter(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program):
     print_dict(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
-    chosenTask = input("What task do you wish to delete?")
-    del ToDoList[chosenTask] #deleting the task
-    print(f"{chosenTask} deleted.")
-    decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
+    while True:
+      try:
+        chosenTask = input("What task do you wish to delete?")
+        del ToDoList[chosenTask] #deleting the task
+        print(f"{chosenTask} deleted.")
+        decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
+      except ValueError:
+        print("Invalid Input. Please input a valid one.")
+      
     
 #ends the program
 def end_program():
@@ -98,17 +108,13 @@ def decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program
             elif userChoice == 4:
                 taskDeleter(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
             elif userChoice == 5:
-                end_program()
-            break
+                break
+            return
         except ValueError:
             print("Invalid Input. Choose from the choices.")  
-        break  
-
+    return
 
 #main function
 get_task(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program)
 decide_menu(ToDoList,add_tasks,print_dict,taskMarker,taskDeleter,end_program,)
-
-
-
-
+end_program()
