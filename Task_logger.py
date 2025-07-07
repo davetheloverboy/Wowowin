@@ -4,13 +4,14 @@
 
 #list initiator
 ListOfTasks = [ ] 
+number_list = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20] 
 
 print("Input the task that you will do today: ")
 
 #task receiver 
 while True:
-    task = input("Input 'yes' to end. ")
-    if task.strip().lower() == "yes":
+    task = input("Input 'end' to end. ")
+    if task.strip().lower() == "end":
         break
     else:
         try:
@@ -20,9 +21,10 @@ while True:
             print("Invalid Input")
 
 #printing the values in the list
+print("These are your listed tasks for today.")
 print(" \n")
-for value in ListOfTasks:
-    print(f"{value}.\n")
+for i,task in enumerate(ListOfTasks):
+    print(f"{i+1}. {task}.\n")
 
 
 
