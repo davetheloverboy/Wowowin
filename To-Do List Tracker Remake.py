@@ -8,6 +8,7 @@ List_of_Tasks = { }
 #makes a list ranging form 1-50
 NumberList = list(range(1,50))
 
+#primarily gets the list of tasks and puts it into the dictionary. 
 def task_getter(List_of_Tasks):
     print("What are your tasks for today? Input 1 to stop")
     while True:
@@ -19,6 +20,7 @@ def task_getter(List_of_Tasks):
         except ValueError:
             print("Invalid Input.")
 
+#adds tasks based on user input
 def task_adder(List_of_Tasks):
     while True:
         try:
@@ -29,11 +31,13 @@ def task_adder(List_of_Tasks):
         except ValueError:
             print("Invalid Input.")
 
+#prints the current tasks 
 def task_viewer(List_of_Tasks):
     print("These are your current tasks:")
     for index,(key,value) in enumerate(List_of_Tasks.items(),1):
         print(f"{index}. {key} : {value}")
 
+#deletes a chosen task by the user
 def task_deleter(List_of_Tasks):
     userInput = input("What task do you want to delete? Input the exact name.")
     if userInput in List_of_Tasks:
@@ -42,6 +46,7 @@ def task_deleter(List_of_Tasks):
     else:
         print("Task not recorded.")
 
+#marks the chosen task as Done
 def task_marker(List_of_Tasks):
     while True:
         try:
@@ -55,6 +60,7 @@ def task_marker(List_of_Tasks):
         except ValueError:
             print("Invalid Input.")
 
+#checks if the tasks are done or not done
 def status_checker(List_of_Tasks):
     task_done = 0
     task_not_done = 0
@@ -71,6 +77,7 @@ def status_checker(List_of_Tasks):
         userStatus = 2
     return userStatus,task_done,task_not_done
 
+#ends the program and prints ending messages
 def program_ender(List_of_Tasks):
     userStats,finished_task,unfinished_task = status_checker(List_of_Tasks)
     print(f"You have {finished_task} tasks done and {unfinished_task} tasks not done.")
@@ -79,6 +86,7 @@ def program_ender(List_of_Tasks):
     elif userStats == 2:
         print("Go finish your tasks!")
 
+#the main controller, loops with itself and uses the other functions
 def main_menu(task_adder, task_viewer, task_marker, task_deleter, program_ender):
     userChoice = "0"
     while userChoice != "5" or 5: 
@@ -108,7 +116,7 @@ def main_menu(task_adder, task_viewer, task_marker, task_deleter, program_ender)
 
 
 #main function
-task_getter(List_of_Tasks)
+task_getter(List_of_Tasks)#gets the tasks
 main_menu(task_adder, task_viewer, task_deleter, task_marker, program_ender)
 program_ender(List_of_Tasks)
 
