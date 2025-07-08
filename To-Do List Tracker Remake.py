@@ -25,9 +25,12 @@ def task_adder(List_of_Tasks):
     while True:
         try:
             userInput = input("What task do you want to add?: ")
-            print = (f"'{userInput}' has been added.")
-            List_of_Tasks[userInput] = "Not Done."
-            break
+            if userInput in List_of_Tasks:
+                print(f"'{userInput} already in the List.")
+            else:
+                print(f"'{userInput}' has been added.")
+                List_of_Tasks[userInput] = "Not Done."
+                break
         except ValueError:
             print("Invalid Input.")
 
@@ -52,9 +55,19 @@ def task_marker(List_of_Tasks):
         try:
             userInput = input("What task do you want to mark done?: ")
             if userInput in List_of_Tasks:
-                userInput == "Done"
-                print(f"'{userInput}' marked as done.")
-                return
+                if List_of_Tasks[userInput] == "Done.":
+                    undoneTask = ("Task is already done. Mark undone? Yes or No:")
+                    if undoneTask.strip().lowercase() == "yes":
+                        List_of_Tasks[userInput] == "Done"
+                        print(f"'{userInput}' marked as undone.")
+                        return
+                    elif undoneTask.strip().lowercase() == "no":
+                        print("noted.")
+                        return
+                else: 
+                    List_of_Tasks[userInput] == "Done."
+                    print(f"'{userInput}' marked as done.")
+                    return
             else:
                 print("There's no such task.")
         except ValueError:
